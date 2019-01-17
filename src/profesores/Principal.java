@@ -65,8 +65,15 @@ public class Principal {
 			lista=Principal.altaProfesor(lista, p);
 			
 			break;
+			
 			case 2:
+				
+			System.out.print("Introduzca el número de profesor: ");
+			int eliminar=sc.nextInt();
+			lista=Principal.bajaProfesor(lista,lista[eliminar-1]);
+			
 			break;
+			
 			case 3:
 			break;
 			case 4:
@@ -97,5 +104,18 @@ public class Principal {
 		listaNueva[i]=p;
 		return listaNueva;
 	}
+	
+	public static Profesor[] bajaProfesor(Profesor lista[],Profesor eliminar) {
+		Profesor[] listaNueva=new Profesor[lista.length-1];
+		int i;
+		for(i=lista.length;i>0;i--) {
+			if(lista[i]==eliminar) {
+			listaNueva[i-1]=lista[i];
+			}
+			listaNueva[i]=lista[i];
+		}
+		return listaNueva;
+	}
+
 
 }
