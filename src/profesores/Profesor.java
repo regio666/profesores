@@ -15,6 +15,7 @@ public class Profesor {
 	public Profesor() {
 		Profesor.curso="";
 		Profesor.pagoPorHoraExtra=0.0;
+		this.nombre="";
 		this.dni="";
 		this.sueldoBase=0.0;
 		this.horasExtra= new int[12];
