@@ -22,10 +22,11 @@ public class Profesor {
 		
 	}
 	
-	public void nuevoProfesor(String curso, double pagoPorHoraExtra, String dni,String nombre,
+	public void nuevoProfesor(String curso, double pagoPorHoraExtra, String nombre,String dni,
 			double sueldoBase,double tipoIRPF) {
 		Profesor.curso=curso;
 		Profesor.pagoPorHoraExtra=pagoPorHoraExtra;
+		this.nombre=nombre;
 		this.dni=dni;
 		this.sueldoBase=sueldoBase;
 		this.tipoIRPF=tipoIRPF;
@@ -81,12 +82,9 @@ public class Profesor {
 		return tipoIRPF;
 	}
 	
-	public int calcularImporteHorasExtras(int mes) {
+	public double calcularImporteHorasExtras(int mes) {
 		
-		double valorHora=this.sueldoBase/12/25/8;
-		int enUnmes=this.horasExtra[mes];
-		double complementoHoras=enUnmes*valorHora;
-		return (int)complementoHoras;
+		return horasExtra[mes]*pagoPorHoraExtra;
 	}
 	
 	public double calcularSueldoBruto(int mes) {
@@ -104,18 +102,22 @@ public class Profesor {
 		return resultado;
 	}
 	
-	public void imprimeProfesor(int numero) {
-		System.out.println("Nombre:"+this.nombre);
-		System.out.println("DNI:"+this.dni);
-		System.out.println("Sueldo Base:"+this.sueldoBase);
-		System.out.println("tipo IRPF:"+this.tipoIRPF);
-		
+	public String imprimeProfesor() {
+		String resultado="";
+		resultado=resultado+("Nombre: ");
+	    resultado=resultado+(nombre);
+	    resultado=resultado+("\nDNI: ");
+	    resultado=resultado+(dni);
+	    resultado=resultado+("\nSueldo Base: ");
+	    resultado=resultado+(sueldoBase);
+	    resultado=resultado+("\ntipo IRPF: ");
+	    resultado=resultado+(tipoIRPF);
+	    return  resultado;
+	    		
 	}
 	
-	public void leerProfesores(int numero) {
+	public void leerProfesores() {
 		Scanner sc=new Scanner(System.in);
-		System.out.print("Numero profesor: ");
-		int numeroProfesor=sc.nextInt();
 		System.out.print("Nombre: ");
 		this.nombre=sc.nextLine();
 		System.out.print("DNI: ");

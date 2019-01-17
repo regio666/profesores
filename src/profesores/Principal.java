@@ -10,21 +10,19 @@ public class Principal {
 		Scanner sc= new Scanner(System.in);
 		
 		int opcion;
-		int i=0;
-		
-		Profesor lista[]=new Profesor[3];
 	
-		lista[0]= new Profesor();
-				
+		
+		Profesor lista[]=new Profesor[0];
+					
 		System.out.print("Curso: ");
 		String curso=sc.nextLine();
-		lista[0].setCurso(curso);
+		Profesor.curso=curso;
 	
 		System.out.println("");
 		
 		System.out.print("Importe Horas Extra: ");
 		double pagoPorHoraExtra=sc.nextDouble();
-		lista[0].setPagoPorHoraExtra(pagoPorHoraExtra);
+		Profesor.pagoPorHoraExtra=pagoPorHoraExtra;
 	
 			
 		do {
@@ -44,19 +42,27 @@ public class Principal {
 		switch(opcion) {
 		
 			case 1:
-			System.out.println("");	
-			i++;
-			lista[i]=new Profesor();
+				
+			Profesor p=new Profesor();
+			
 			System.out.print("Profesor: ");
-			String nombre=sc.nextLine();
+			String profesor=sc.nextLine();
+			
+			
 			System.out.print("DNI: ");
 			String dni=sc.nextLine();
+			
+			
 			System.out.print("Sueldo Base: ");
 			double sueldoBase=sc.nextDouble();
+			
+			
 			System.out.print("tipoIRPF: ");
 			double tipoIRPF=sc.nextDouble();
+		
 			
-			lista[i].nuevoProfesor(curso, pagoPorHoraExtra, dni, nombre, sueldoBase, tipoIRPF);
+			p.nuevoProfesor(curso, pagoPorHoraExtra, profesor, dni, sueldoBase, tipoIRPF);
+			lista=Principal.altaProfesor(lista, p);
 			
 			break;
 			case 2:
@@ -67,7 +73,8 @@ public class Principal {
 			break;
 			case 5:
 			for(int j=0;j<lista.length;j++) {
-				lista[j].imprimeProfesor(j);
+				System.out.println("Número de profedor: "+(j+1));
+				System.out.println(lista[j].imprimeProfesor());
 			}
 			break;
 			case 6:
@@ -80,8 +87,15 @@ public class Principal {
 		
 	}
 	
-	//public void lista=AltaProfesor(lista, Profesor p) {
-		
+	public static Profesor[] altaProfesor(Profesor lista[],Profesor p) {
 	
+		Profesor[] listaNueva=new Profesor[lista.length+1];
+		int i;
+		for(i=0;i<lista.length;i++) {
+			listaNueva[i]=lista[i];
+		}
+		listaNueva[i]=p;
+		return listaNueva;
+	}
 
 }
