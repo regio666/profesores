@@ -45,21 +45,21 @@ public class Principal {
 				
 			Profesor p=new Profesor();
 			
+			System.out.print("");
+			String nulo=sc.nextLine();
+					
 			System.out.print("Profesor: ");
 			String profesor=sc.nextLine();
-			
-			
+					
 			System.out.print("DNI: ");
 			String dni=sc.nextLine();
-			
-			
+					
 			System.out.print("Sueldo Base: ");
 			double sueldoBase=sc.nextDouble();
-			
-			
+						
 			System.out.print("tipoIRPF: ");
 			double tipoIRPF=sc.nextDouble();
-		
+			System.out.println("");
 			
 			p.nuevoProfesor(curso, pagoPorHoraExtra, profesor, dni, sueldoBase, tipoIRPF);
 			lista=Principal.altaProfesor(lista, p);
