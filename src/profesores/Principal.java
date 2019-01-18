@@ -70,18 +70,27 @@ public class Principal {
 				
 			System.out.print("Introduzca el número de profesor: ");
 			int eliminar=sc.nextInt();
-			lista=Principal.bajaProfesor(lista,lista[eliminar-1]);
+			lista=Principal.bajaProfesor(lista,eliminar-1);
 			
 			break;
 			
 			case 3:
+			
+			System.out.print("Introduzca el número de profesor: ");
+			int indice=sc.nextInt();	
+			
+			System.out.println(lista[indice-1].imprimeProfesor());
+				
 			break;
 			case 4:
 			break;
 			case 5:
 			for(int j=0;j<lista.length;j++) {
+			try {
 				System.out.println("Número de profedor: "+(j+1));
 				System.out.println(lista[j].imprimeProfesor());
+			} catch(NullPointerException e)
+			{ }
 			}
 			break;
 			case 6:
@@ -105,14 +114,19 @@ public class Principal {
 		return listaNueva;
 	}
 	
-	public static Profesor[] bajaProfesor(Profesor lista[],Profesor eliminar) {
-		Profesor[] listaNueva=new Profesor[lista.length-1];
+	public static Profesor[] bajaProfesor(Profesor lista[],int eliminar) {
+		
+		Profesor[] listaNueva=new Profesor[lista.length];
 		int i;
-		for(i=lista.length;i>0;i--) {
-			if(lista[i]==eliminar) {
-			listaNueva[i-1]=lista[i];
+		int j;
+		for(i=0;i<lista.length;i++) {
+			if(lista[i]==lista[eliminar]) {
+			for(j=i;j<lista.length-1;j++) {
+				listaNueva[i]=lista[j+1];
+				}
+				break;
 			}
-			listaNueva[i]=lista[i];
+		
 		}
 		return listaNueva;
 	}
