@@ -43,6 +43,10 @@ public class Profesor {
 		Profesor.pagoPorHoraExtra=pagoPorHoraExtra;
 	}
 	
+	public void setNombre(String nombre) {
+		this.nombre=nombre;
+	}
+	
 	public void setDni(String dni) {
 		this.dni=dni;
 	}
@@ -51,8 +55,8 @@ public class Profesor {
 		this.sueldoBase=sueldoBase;
 	}
 	
-	public void setHorasExtra(int[] horasExtra) {
-		this.horasExtra=horasExtra;
+	public void setHorasExtra(int mes, int horasExtra) {
+		this.horasExtra[mes]=horasExtra;
 	}
 	
 	public void setTipoIRPF(double tipoIRPF) {
@@ -67,6 +71,10 @@ public class Profesor {
 		return pagoPorHoraExtra;
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+	
 	public String getDni() {
 		return dni;
 	}
@@ -75,11 +83,11 @@ public class Profesor {
 		return sueldoBase;
 	}
 	
-	public int[] horasExtra() {
-		return horasExtra;
+	public int getHorasExtra(int mes) {
+		return horasExtra[mes];
 	}
 	
-	public double tipoIRPF() {
+	public double getTipoIRPF() {
 		return tipoIRPF;
 	}
 	
@@ -129,7 +137,20 @@ public class Profesor {
 		this.tipoIRPF=sc.nextDouble();
 	}
 	
-	public void imprimirNominas(int mes,int numero) {
+	public String imprimirNominas(int mes,int numero) {
+		
+		String resultado="";
+		String [] meses={"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto",
+				"Septiembre","Octubre","Noviembre"};
+		resultado=resultado+("\nNombre"+this.nombre);
+		resultado=resultado+("\nCurso: "+Profesor.curso);
+		resultado=resultado+(" Nómina mes: "+meses[mes]);
+		resultado=resultado+("\nDNI"+this.dni);
+		resultado=resultado+("\nSuelo Base: "+this.sueldoBase);
+		resultado=resultado+("\nHoras Extras: "+this.getHorasExtra(mes));
+		resultado=resultado+("\nTipo IRPF: "+this.getTipoIRPF());
+		
+		return resultado;
 		
 	}
 	

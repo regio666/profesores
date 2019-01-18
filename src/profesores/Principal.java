@@ -5,12 +5,12 @@ import java.util.*;
 public class Principal {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
 		Scanner sc= new Scanner(System.in);
 		
 		int opcion;
-	
+		int mes;
+		int numero;
 		
 		Profesor lista[]=new Profesor[0];
 					
@@ -83,6 +83,19 @@ public class Principal {
 				
 			break;
 			case 4:
+			
+			do {
+			System.out.print("Horas extraordinarias realizadas por los profesores en el mes: ");
+			mes=sc.nextInt();	
+			} while(mes<1 || mes>12);
+			
+			for(int i=0;i<lista.length;i++) {
+			System.out.println("Nombre profesor: "+lista[i].getNombre());
+			System.out.print("Horas realizadas:");
+			int horasExtra=sc.nextInt();	
+			lista[i].setHorasExtra(mes, horasExtra);
+			}
+			
 			break;
 			case 5:
 			for(int j=0;j<lista.length;j++) {
@@ -93,7 +106,22 @@ public class Principal {
 			{ }
 			}
 			break;
+			
 			case 6:
+			
+			do {
+			System.out.print("Nominas del mes: ");
+			mes=sc.nextInt();	
+			} while(mes<1 || mes>12);
+			
+			for(int j=0;j<lista.length;j++) {
+				try {
+					System.out.println("Número de profedor: "+(j+1));
+					System.out.println(lista[j].imprimirNominas(mes-1, j));
+				} catch(NullPointerException e)
+				{ }
+				}
+				
 			break;
 			
 		}
