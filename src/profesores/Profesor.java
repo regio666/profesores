@@ -121,6 +121,7 @@ public class Profesor {
 	    resultado=resultado+(sueldoBase);
 	    resultado=resultado+("\ntipo IRPF: ");
 	    resultado=resultado+(tipoIRPF);
+	    resultado=resultado+("\n");
 	    return  resultado;
 	    		
 	}
@@ -142,14 +143,17 @@ public class Profesor {
 		String resultado="";
 		String [] meses={"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto",
 				"Septiembre","Octubre","Noviembre"};
-		resultado=resultado+("\nNombre"+this.nombre);
+		resultado=resultado+("\nNombre: "+this.nombre);
 		resultado=resultado+("\nCurso: "+Profesor.curso);
 		resultado=resultado+(" Nómina mes: "+meses[mes]);
-		resultado=resultado+("\nDNI"+this.dni);
+		resultado=resultado+("\nDNI: "+this.dni);
 		resultado=resultado+("\nSuelo Base: "+this.sueldoBase);
 		resultado=resultado+("\nHoras Extras: "+this.getHorasExtra(mes));
 		resultado=resultado+("\nTipo IRPF: "+this.getTipoIRPF());
-		
+		resultado=resultado+("\nSueldo Bruto: "+this.calcularSueldoBruto(mes));
+		resultado=resultado+("\nRetención por IRPF: "+this.calcularRetencionIrpf(mes));
+		resultado=resultado+("\nSueldo Neto: "+this.calcularSueldo(mes));
+		resultado=resultado+("\n");
 		return resultado;
 		
 	}

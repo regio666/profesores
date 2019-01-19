@@ -10,10 +10,9 @@ public class Principal {
 		
 		int opcion;
 		int mes;
-		int numero;
 		
 		Profesor lista[]=new Profesor[0];
-					
+				
 		System.out.print("Curso: ");
 		String curso=sc.nextLine();
 		Profesor.curso=curso;
@@ -30,7 +29,7 @@ public class Principal {
 		System.out.print("SELECCIONE UNA OPCION");
 		System.out.print("\n1. ALTA DE UN PROFESOR");
 		System.out.print("\n2. BAJA DE UN PROFESOR");
-		System.out.print("\n3. CONSULTA DE DATOS PERSONALES DE UN PROFESORES");
+		System.out.print("\n3. CONSULTA DE DATOS PERSONALES DE UN PROFESOR");
 		System.out.print("\n4. INTRODUCIR HORAS EXTRAORDINARIAS DE UN MES");
 		System.out.print("\n5. LISTADO DE PROFESORES");
 		System.out.print("\n6. LISTADO DE NOMINAS DE UN MES");
@@ -45,7 +44,7 @@ public class Principal {
 				
 			Profesor p=new Profesor();
 			
-			System.out.print("");
+			System.out.println("");
 			String nulo=sc.nextLine();
 					
 			System.out.print("Profesor: ");
@@ -70,7 +69,8 @@ public class Principal {
 				
 			System.out.print("Introduzca el número de profesor: ");
 			int eliminar=sc.nextInt();
-			lista=Principal.bajaProfesor(lista,eliminar-1);
+			eliminar=eliminar-1;
+			lista=Principal.bajaProfesor(lista,eliminar);
 			
 			break;
 			
@@ -89,6 +89,7 @@ public class Principal {
 			mes=sc.nextInt();	
 			} while(mes<1 || mes>12);
 			
+			mes=mes-1;
 			for(int i=0;i<lista.length;i++) {
 			System.out.println("Nombre profesor: "+lista[i].getNombre());
 			System.out.print("Horas realizadas:");
@@ -100,6 +101,7 @@ public class Principal {
 			case 5:
 			for(int j=0;j<lista.length;j++) {
 			try {
+				System.out.println("");
 				System.out.println("Número de profedor: "+(j+1));
 				System.out.println(lista[j].imprimeProfesor());
 			} catch(NullPointerException e)
@@ -143,21 +145,18 @@ public class Principal {
 	}
 	
 	public static Profesor[] bajaProfesor(Profesor lista[],int eliminar) {
-		
+				
 		Profesor[] listaNueva=new Profesor[lista.length];
 		int i;
 		int j;
 		for(i=0;i<lista.length;i++) {
-			if(lista[i]==lista[eliminar]) {
-			for(j=i;j<lista.length-1;j++) {
-				listaNueva[i]=lista[j+1];
-				}
-				break;
+			if(lista[i]!=lista[eliminar]) {
+				listaNueva[i]=lista[i];
 			}
-		
-		}
+						
+		} 
 		return listaNueva;
 	}
-
+	
 
 }
