@@ -146,15 +146,20 @@ public class Principal {
 	
 	public static Profesor[] bajaProfesor(Profesor lista[],int eliminar) {
 				
-		Profesor[] listaNueva=new Profesor[lista.length];
+		boolean elementoEliminado;
+		
+		Profesor[] listaNueva=new Profesor[lista.length-1];
 		int i;
 		int j;
-		for(i=0;i<lista.length;i++) {
-			if(lista[i]!=lista[eliminar]) {
+		for(i=0;i<lista.length-1;i++) {
+			if(i==eliminar) {
+				listaNueva[i]=null;
+			} else {
 				listaNueva[i]=lista[i];
 			}
-						
-		} 
+			
+			}			
+		 
 		return listaNueva;
 	}
 	
