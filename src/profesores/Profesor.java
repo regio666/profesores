@@ -1,5 +1,6 @@
 package profesores;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Profesor {
@@ -9,7 +10,7 @@ public class Profesor {
 	private String dni;
 	private String nombre;
 	private double sueldoBase;
-	private int[] horasExtra;
+	private ArrayList<Integer> horasExtra; 
 	private double tipoIRPF ;
 		
 	public Profesor() {
@@ -18,7 +19,7 @@ public class Profesor {
 		this.nombre="";
 		this.dni="";
 		this.sueldoBase=0.0;
-		this.horasExtra= new int[12];
+		this.horasExtra= new ArrayList<Integer>(12);
 		this.tipoIRPF=0.0;
 		
 	}
@@ -56,7 +57,7 @@ public class Profesor {
 	}
 	
 	public void setHorasExtra(int mes, int horasExtra) {
-		this.horasExtra[mes]=horasExtra;
+		this.horasExtra.add(mes,horasExtra);
 	}
 	
 	public void setTipoIRPF(double tipoIRPF) {
@@ -84,7 +85,7 @@ public class Profesor {
 	}
 	
 	public int getHorasExtra(int mes) {
-		return horasExtra[mes];
+		return horasExtra.get(mes);
 	}
 	
 	public double getTipoIRPF() {
@@ -93,7 +94,7 @@ public class Profesor {
 	
 	public double calcularImporteHorasExtras(int mes) {
 		
-		return horasExtra[mes]*pagoPorHoraExtra;
+		return horasExtra.get(mes)*pagoPorHoraExtra;
 	}
 	
 	public double calcularSueldoBruto(int mes) {
@@ -141,11 +142,22 @@ public class Profesor {
 	public String imprimirNominas(int mes,int numero) {
 		
 		String resultado="";
-		String [] meses={"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto",
-				"Septiembre","Octubre","Noviembre"};
+		ArrayList<String> meses= new ArrayList<String>(12);
+		meses.add("Enero");
+		meses.add("Febrero");
+		meses.add("Marzo");
+		meses.add("Abril");
+		meses.add("Mayo");
+		meses.add("Junio");
+		meses.add("Julio");
+		meses.add("Agosto");
+		meses.add("Septiembre");
+		meses.add("Octubre");
+		meses.add("Noviembre");
+		meses.add("Diciembre");
 		resultado=resultado+("\nNombre: "+this.nombre);
 		resultado=resultado+("\nCurso: "+Profesor.curso);
-		resultado=resultado+(" Nómina mes: "+meses[mes]);
+		resultado=resultado+(" Nómina mes: "+meses.get(mes);
 		resultado=resultado+("\nDNI: "+this.dni);
 		resultado=resultado+("\nSuelo Base: "+this.sueldoBase);
 		resultado=resultado+("\nHoras Extras: "+this.getHorasExtra(mes));

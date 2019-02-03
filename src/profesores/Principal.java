@@ -11,7 +11,7 @@ public class Principal {
 		int opcion;
 		int mes;
 		
-		Profesor lista[]=new Profesor[0];
+		ArrayList<Profesor> lista=new ArrayList<Profesor>();
 				
 		System.out.print("Curso: ");
 		String curso=sc.nextLine();
@@ -61,7 +61,7 @@ public class Principal {
 			System.out.println("");
 			
 			p.nuevoProfesor(curso, pagoPorHoraExtra, profesor, dni, sueldoBase, tipoIRPF);
-			lista=Principal.altaProfesor(lista, p);
+			altaProfesor(lista, p);
 			
 			break;
 			
@@ -70,7 +70,7 @@ public class Principal {
 			System.out.print("Introduzca el número de profesor: ");
 			int eliminar=sc.nextInt();
 			eliminar=eliminar-1;
-			lista=Principal.bajaProfesor(lista,eliminar);
+			Principal.bajaProfesor(lista,eliminar);
 			
 			break;
 			
@@ -79,7 +79,7 @@ public class Principal {
 			System.out.print("Introduzca el número de profesor: ");
 			int indice=sc.nextInt();	
 			
-			System.out.println(lista[indice-1].imprimeProfesor());
+			System.out.println(lista.get(indice).imprimeProfesor());
 				
 			break;
 			case 4:
@@ -90,22 +90,21 @@ public class Principal {
 			} while(mes<1 || mes>12);
 			
 			mes=mes-1;
-			for(int i=0;i<lista.length;i++) {
-			System.out.println("Nombre profesor: "+lista[i].getNombre());
+			for(int i=0;i<lista.size();i++) {
+			System.out.println("Nombre profesor: "+lista.get(i).getNombre());
 			System.out.print("Horas realizadas:");
 			int horasExtra=sc.nextInt();	
-			lista[i].setHorasExtra(mes, horasExtra);
+			lista.get(i).setHorasExtra(mes, horasExtra);
 			}
 			
 			break;
 			case 5:
-			for(int j=0;j<lista.length;j++) {
-			try {
+			for(int j=0;j<lista.size();j++) {
+			
 				System.out.println("");
 				System.out.println("Número de profedor: "+(j+1));
-				System.out.println(lista[j].imprimeProfesor());
-			} catch(NullPointerException e)
-			{ }
+				System.out.println(lista.get(j).imprimeProfesor());
+			
 			}
 			break;
 			
@@ -116,12 +115,12 @@ public class Principal {
 			mes=sc.nextInt();	
 			} while(mes<1 || mes>12);
 			
-			for(int j=0;j<lista.length;j++) {
-				try {
+			for(int j=0;j<lista.size();j++) {
+				
 					System.out.println("Número de profedor: "+(j+1));
-					System.out.println(lista[j].imprimirNominas(mes-1, j));
-				} catch(NullPointerException e)
-				{ }
+					System.out.println(lista.get(j).imprimirNominas(mes-1, j));
+				
+				
 				}
 				
 			break;
@@ -133,34 +132,16 @@ public class Principal {
 		
 	}
 	
-	public static Profesor[] altaProfesor(Profesor lista[],Profesor p) {
+	public static void altaProfesor(ArrayList<Profesor> lista,Profesor p) {
 	
-		Profesor[] listaNueva=new Profesor[lista.length+1];
-		int i;
-		for(i=0;i<lista.length;i++) {
-			listaNueva[i]=lista[i];
-		}
-		listaNueva[i]=p;
-		return listaNueva;
+			lista.add(p);
+		
 	}
 	
-	public static Profesor[] bajaProfesor(Profesor lista[],int eliminar) {
+	public static void bajaProfesor(ArrayList<Profesor> lista,int eliminar) {
 				
-		boolean elementoEliminado;
-		
-		Profesor[] listaNueva=new Profesor[lista.length-1];
-		int i;
-		int j;
-		for(i=0;i<lista.length-1;i++) {
-			if(i==eliminar) {
-				listaNueva[i]=null;
-			} else {
-				listaNueva[i]=lista[i];
-			}
+			lista.remove(eliminar);
 			
-			}			
-		 
-		return listaNueva;
 	}
 	
 
